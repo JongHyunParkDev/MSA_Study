@@ -1,0 +1,13 @@
+server:
+  port: 42580
+
+spring:
+  application:
+    name: discoveryservice
+
+eureka:
+  client:
+    # 유레카 client register 등록의 default 가 true 임으로, false 로 변경 (server 로만 쓰겠다는 뜻)
+    register-with-eureka: false
+    # 유레카 server 로부터 인스턴스들의 정보를 주기적으로 가져 올 것인지 설정
+    fetch-registry: false
