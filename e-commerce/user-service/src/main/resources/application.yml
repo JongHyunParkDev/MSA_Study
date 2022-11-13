@@ -4,6 +4,22 @@ server:
 spring:
   application:
     name: user-service
+###############################
+#       DB connection         #
+###############################
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ecc
+    username: ecc
+    password: ecc1234!
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQL10Dialect
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
 
 eureka:
   instance:
@@ -13,7 +29,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:42580/eureka
-
 
 greeting:
   message: Welcome to the Simple E-Commerce
