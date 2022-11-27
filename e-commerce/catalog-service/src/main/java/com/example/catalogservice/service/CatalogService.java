@@ -6,5 +6,5 @@ import com.example.catalogservice.jpa.CatalogEntity;
 import java.util.List;
 
 public interface CatalogService {
-    List<CatalogDto> getAllCatalogs();
+    Iterable<CatalogEntity> getAllCatalogs();
 }

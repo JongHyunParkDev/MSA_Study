@@ -25,11 +25,7 @@ public class CatalogServiceImpl implements CatalogService{
     }
 
     @Override
-    public List<CatalogDto> getAllCatalogs() {
-        List<CatalogDto> result = new ArrayList<>();
-
-        catalogRepository.findAll().forEach(e -> result.add(new ModelMapper().map(e, CatalogDto.class)));
-
-        return result;
+    public Iterable<CatalogEntity> getAllCatalogs() {
+        return catalogRepository.findAll();
     }
 }

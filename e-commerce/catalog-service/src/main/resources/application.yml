@@ -22,6 +22,12 @@ spring:
         format_sql: true
     show-sql: true
     generate-ddl: true
+    # Spring boot 2.5 이상 부터 해당 property 가 있어야 data.sql 를 실행함.
+    # https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.5-Release-Notes#hibernate-and-datasql
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
 
 eureka:
   instance:
