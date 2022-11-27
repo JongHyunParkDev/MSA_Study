@@ -33,7 +33,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("welcome")
+    @GetMapping("/welcome")
     public String welcome() {
 //        return env.getProperty("greeting.message");
         return greeting.getMessage();
@@ -44,7 +44,7 @@ public class UserController {
         return String.format("It's Working in User Service PORT %s", env.getProperty("local.server.port"));
     }
 
-    @PostMapping("users")
+    @PostMapping("/users")
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user) {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -57,7 +57,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
-    @GetMapping("users")
+    @GetMapping("/users")
     public ResponseEntity<List<ResponseUser>> getUsers() {
         List<UserDto> userDtoList = userService.getUserByAll();
 
@@ -68,7 +68,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    @GetMapping("users/{userId}")
+    @GetMapping("/users/{userId}")
     public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId) {
         UserDto userDto = userService.getUserByUserId(userId);
 
