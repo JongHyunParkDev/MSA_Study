@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name="orders")
 public class OrderEntity implements Serializable {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
