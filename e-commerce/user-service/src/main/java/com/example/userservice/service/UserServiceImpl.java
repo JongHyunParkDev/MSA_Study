@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
-    // DI 생성자 주입 방식으로한다.
     public UserServiceImpl (UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;

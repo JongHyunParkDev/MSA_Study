@@ -1,7 +1,6 @@
 package com.example.userservice.security;
 
 import com.example.userservice.service.UserService;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,11 +32,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         // https://velog.io/@woohobi/Spring-security-csrf%EB%9E%80
         // csrf 사용 안함.
         http.csrf().disable();
-//        http.authorizeRequests().antMatchers("/users/**").permitAll();
-        http.authorizeRequests().antMatchers("/**")
-                .hasIpAddress("192.168.0.0") // 사용되고 있는 IP
+        http.authorizeRequests()
+                // Spring Boot  2.6.4 + 에서는 이렇게 사용해야한다.
+//                .antMatchers("/error/**").permitAll()
+                .antMatchers("/**")
+                .hasIpAddress("192.168.45.200") // 사용되고 있는 IP
                 .and()
                 .addFilter(getAuthenticationFilter());
+
+        http.headers().frameOptions().disable();
     }
 
     @Override
@@ -51,12 +54,5 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         authenticationFilter.setAuthenticationManager(authenticationManager());
 
         return authenticationFilter;
-    }
-
-    // spring container 에서 BCryptPasswordEncoder를
-    // 사용하는 service 에서 인식할 수 없음으로 bean 으로 등록해둔다.
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

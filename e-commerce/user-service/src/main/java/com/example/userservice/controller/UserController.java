@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-service")
+@RequestMapping("/")
 public class UserController {
     // application 으로 가져오기 1
     private Environment env;
@@ -27,7 +27,6 @@ public class UserController {
     @Autowired
     private Greeting greeting;
 
-    @Autowired
     public UserController(Environment env, UserService userService) {
         this.env = env;
         this.userService = userService;
