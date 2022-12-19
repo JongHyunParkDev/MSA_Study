@@ -24,13 +24,21 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/user-service/login
+            - Path=/user-service/users
             - Method=POST
           filters:
 #           Request Header 저장된 값 (Cookie) 을 삭제
             - RemoveRequestHeader=Cookie
 #           콤마 (,) 앞에 값에 적힌 값이 들어올 때, 뒤에 값 처럼 다시 작성해라.
 #           각 service 에서 RequestMapping 값에 /**-service/를 작성하지 않아도 된다.
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
         - id: user-service
           uri: lb://USER-SERVICE

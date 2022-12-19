@@ -36,7 +36,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 // Spring Boot  2.6.4 + 에서는 이렇게 사용해야한다.
 //                .antMatchers("/error/**").permitAll()
                 .antMatchers("/**")
-                .hasIpAddress("192.168.45.200") // 사용되고 있는 IP
+//                .permitAll()
+                .hasIpAddress("127.0.0.1") // 사용되고 있는 IP
                 .and()
                 .addFilter(getAuthenticationFilter());
 
